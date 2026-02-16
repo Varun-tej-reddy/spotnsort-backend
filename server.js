@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import reportsRouter from "./routes/reports.js";
-import authRouter from "./routes/auth.js";   // ✅ ADD THIS
+import authRouter from "./routes/auth.js";
 
 dotenv.config();
 
@@ -19,9 +19,8 @@ mongoose
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
   .catch((err) => console.error("❌ MongoDB Atlas connection error:", err));
 
-// ✅ MOUNT ROUTES
 app.use("/api/reports", reportsRouter);
-app.use("/api/auth", authRouter);   // ✅ ADD THIS
+app.use("/api/auth", authRouter);
 
 app.get("/", (req, res) => {
   res.send("✅ SpotnSort Backend Running");
