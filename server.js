@@ -4,30 +4,27 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import reportsRouter from "./routes/reports.js";
-import authRouter from "./routes/auth.js";
+import authRouter from "./routes/auth.js";   // ✅ ADD THIS
 
 dotenv.config();
 
 const app = express();
 
-// Middlewares
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+  .catch((err) => console.error("❌ MongoDB Atlas connection error:", err));
 
-// Routes
+// ✅ MOUNT ROUTES
 app.use("/api/reports", reportsRouter);
-app.use("/api/auth", authRouter);
+app.use("/api/auth", authRouter);   // ✅ ADD THIS
 
-// Root test
 app.get("/", (req, res) => {
-  res.send("✅ Backend running successfully");
+  res.send("✅ SpotnSort Backend Running");
 });
 
 const PORT = process.env.PORT || 5001;
